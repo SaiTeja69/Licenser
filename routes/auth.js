@@ -16,6 +16,7 @@ module.exports = {
     })
   }),
   validate: router().post("/", function (req, res, next) {
+    console.log(req.body)
     UserDB.connect(req.body,(err,data)=>{
       if(err){
         res.send(util.Failure('could not connect'));
@@ -26,6 +27,17 @@ module.exports = {
   }),
 
   disconnect: router().post("/", function (req, res, next) {}),
+
+  expiredBool:router().post("/",function(req,res,next){
+    UserDB.expiredBool(req.body,(err,data)=>{
+      if(err){
+        res.send(util.Failure('expired'));
+      }
+      else{
+        res.send(util.Success('working!'))
+      }
+    })
+  }),
 
 
   verifyUserEmail: router().get("/:id", (req, res, next) => {

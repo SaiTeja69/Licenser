@@ -47,6 +47,7 @@ const saveID = async(user,cb)=>{
 
 const connect = async(user,cb)=>{
  let lol = await users.findOne({id:user.id})
+  console.log(lol)
  if(lol){
    if(lol.connected==0){
      lol.connected=1
@@ -61,8 +62,18 @@ const disconnect = async()=>{
 
 }
 
+const expiredBool = async(user,cb)=>{
+  let lol =await users.findOne({id:user.id})
+  if(lol){
+    cb(null,lol)
+  }else{
+    cb(true,null)
+  }
+}
+
 module.exports = {
   saveID:saveID,
   connect:connect,
-  disconnect:disconnect
+  disconnect:disconnect,
+  expiredBool:expiredBool
 };

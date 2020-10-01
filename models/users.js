@@ -31,7 +31,7 @@ const saveID = async(user,cb)=>{
   const mon=endDate.getMonth();
   console.log(mon+user)
   console.log(endDate.getFullYear())
-  endDate.setMonth(mon+user)
+  endDate.setMonth(mon+parseInt(user))
   console.log(endDate.getFullYear())
   console.log(endDate);
   let newCode = new users({
